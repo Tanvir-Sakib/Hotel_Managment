@@ -6,7 +6,7 @@ const path = require('path');
 const {getHomePage} = require('./routes/index');
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const { registrationPage, adduser,userdata, editUserPage, editUser} = require('./routes/auth');
-const {loginPage} = require('./routes/verify');
+const {loginPage,userProfile,userIn,userOut,userPro} = require('./routes/verify');
 
 
 
@@ -50,7 +50,10 @@ app.get('/add', addPlayerPage);
 app.get('/edit/:id', editPlayerPage);
 app.get('/delete/:id', deletePlayer);
 app.get('/userdata', userdata);
+app.get('/userprofile', userProfile);
+app.get('/userpro', userPro);
 app.post('/registration', adduser );
+app.post('/login', userIn );
 app.post('/add', addPlayer);
 app.post('/edit/:id', editPlayer);
 app.post('/edituser/:userid', editUser);
