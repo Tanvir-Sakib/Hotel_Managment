@@ -66,4 +66,13 @@ module.exports = {
                 });
             });
     },
+
+    open: (req, res) => {
+
+            res.render('open.ejs', {
+                title: 'Open Page',
+                open: result,
+            });
+    },
+
 }

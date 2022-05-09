@@ -6,7 +6,7 @@ const path = require('path');
 const {getHomePage} = require('./routes/index');
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const { registrationPage, adduser,userdata, editUserPage, editUser} = require('./routes/auth');
-const {loginPage,userProfile,userIn,userOut,userPro} = require('./routes/verify');
+const {loginPage,userProfile,userIn,userOut,userPro,open} = require('./routes/verify');
 
 
 
@@ -52,6 +52,7 @@ app.get('/delete/:id', deletePlayer);
 app.get('/userdata', userdata);
 app.get('/userprofile', userProfile);
 app.get('/userpro', userPro);
+app.get('/open', open);
 app.post('/registration', adduser );
 app.post('/login', userIn );
 app.post('/add', addPlayer);
