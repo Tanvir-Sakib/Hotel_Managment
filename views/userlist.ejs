@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/assets/css/custom.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
+<body>
+    <div class="container">
+        <h2>User List</h2>        
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>User Name</th>
+                <th>Adress</th>
+                <th>Phone Number</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(let i=0; i<userlist.length; i++) {  %>
+                <tr>
+                    <td><%= userlist[i].id %></td>
+                    <td><%= userlist[i].name %></td>
+                    <td><%= userlist[i].username %></td>
+                    <td><%= userlist[i].address %></td>
+                    <td><%= userlist[i].phonenumber %></td>
+                    <td><%= userlist[i].dob %></td>
+                    <td><%= userlist[i].gender %></td>
+                    <td><%= userlist[i].email %></td>
+                    <td><%= userlist[i].password %></td>
+                    <td>
+                        <a href="/edituser/<%= userlist[i].id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
