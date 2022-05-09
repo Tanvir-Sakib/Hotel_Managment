@@ -7,11 +7,17 @@ const {getHomePage} = require('./routes/index');
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const { registrationPage, adduser,userdata, editUserPage, editUser} = require('./routes/auth');
 const {loginPage,userProfile,userIn,userOut,userPro,open} = require('./routes/verify');
+const session = require('express-session');
 
 
 
 const app = express();
 const port = 5000;
+app.use(session({
+    secret: '2C44-4D44-WppQ38S',
+    resave: true,
+    saveUninitialized: true
+}));
 
 // create connection to database
 // the mysql.createConnection function takes in a configuration object which contains host, user, password and the database name.
@@ -54,7 +60,7 @@ app.get('/userprofile', userProfile);
 app.get('/userpro', userPro);
 app.get('/open', open);
 app.post('/registration', adduser );
-app.post('/login', userIn );
+app.post('/login', userIn);
 app.post('/add', addPlayer);
 app.post('/edit/:id', editPlayer);
 app.post('/edituser/:userid', editUser);
