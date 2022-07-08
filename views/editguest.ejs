@@ -16,49 +16,47 @@
 <body>
 <div class="container">
     <h2>Guest Data Edit Form</h2>
-    <form action="/editguest/<%=user.id %>" method="post">
+    <form action="/editguest/<%=guest.id %>" method="post">
 
-        <input type="hidden" value="<%= user.id  %>" class="form-control" id="id" name="userid">
+        <input type="hidden" value="<%=guest.id %>" class="form-control" id="id" name="guest_id">
 
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="name" value="<%= user.name  %>" class="form-control" id="name" placeholder="Enter your name" name="name">
-        </div>
-
-        <div class="form-group">
-            <label for="username">User Name:</label>
-            <input type="name" value="<%= user.username  %>" class="form-control" id="username" placeholder="Enter your user name" name="username">
+            <input type="name" value="<%=guest.name %>" class="form-control" id="name" placeholder="Enter name" name="name">
         </div>
 
         <div class="form-group">
             <label for="address">Address:</label>
-            <input type="address" value="<%= user.address  %>" class="form-control" id="address" placeholder="Enter your address" name="address">
-        </div>
-
-        <div class="form-group">
-            <label for="tel">Phone Number:</label>
-            <input type="tel" value="<%= user.phonenumber  %>" class="form-control" id="tel" placeholder="Enter your phone number" name="tel">
-        </div>
-
-        <div class="form-group">
-            <label for="dob">Date of Birth:</label>
-            <input type="date" value="<%= user.dob %>" class="form-control" id="dob" placeholder="Enter your date of birth" name="dob">
-        </div>
-
-        <div class="form-group">
-            <label><input type="radio" <%= user.gender == 'Male'? 'checked' : '' %> name="gender" value="Male"> Male </label>
-            <label><input type="radio" <%= user.gender == 'Female'? 'checked' : '' %> name="gender" value="Female"> Female </label>
-            <label><input type="radio" <%= user.gender == 'Others'? 'checked' : '' %> name="gender" value="Others"> Others </label>
+            <input type="address" value="<%=guest.address %>" class="form-control" id="address" placeholder="Enter address" name="address">
         </div>
 
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" value="<%= user.email  %>" class="form-control" id="email" placeholder="Enter email" name="email">
+            <input type="email" value="<%=guest.email %>" class="form-control" id="email" placeholder="Enter email" name="email">
         </div>
 
         <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" value="<%= user.password  %>" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+            <label for="tel">Phone Number:</label>
+            <input type="tel" value="<%=guest.phone_number %>" class="form-control" id="tel" placeholder="Enter phone number" name="phone_number">
+        </div>
+
+        <div class="form-group">
+            <label for="tel">NID/Passport Number:</label>
+            <input type="tel" value="<%=guest.nid %> " class="form-control" id="tel" placeholder="Enter NID/Passport number" name="nid">
+        </div>
+
+        <div class="form-group">
+            <label for="tel">Room Number:</label>
+            <input type="tel" value="<%=guest.room_num %>" class="form-control" id="tel" placeholder="Enter room number" name="room_num">
+        </div>
+        <div class="form-group">
+            <label for="dob">Check In:</label>
+            <input type="date" value="<%=guest.check_in %>" class="form-control" id="dob" placeholder="Check In time" name="check_in">
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Check out:</label>
+            <input type="date" value="<%=guest.check_out %>"  class="form-control" id="dob" placeholder="Check out time" name="check_out">
         </div>
 
         <button type="submit" class="btn btn-default">Submit</button>

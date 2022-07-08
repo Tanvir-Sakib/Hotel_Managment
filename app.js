@@ -7,7 +7,7 @@ const {getHomePage} = require('./routes/index');
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const {registrationPage, adduser,userdata, editUserPage, editUser} = require('./routes/auth');
 const {loginPage,userProfile,userIn,userOut,userPro,open} = require('./routes/verify');
-const {addguestpage, addguest, guestdata, editGuestPage } = require('./routes/guest');
+const {addguestpage, addguest, guestdata, editGuestPage, editGuest } = require('./routes/guest');
 const session = require('express-session');
 
 
@@ -54,6 +54,7 @@ app.get('/registration', registrationPage );
 app.get('/addguest', addguestpage);
 app.get('/login', loginPage );
 app.get('/edituser/:userid', editUserPage);
+app.get('/editguest/:guestid', editGuestPage);
 app.get('/add', addPlayerPage);
 app.get('/edit/:id', editPlayerPage);
 app.get('/delete/:id', deletePlayer);
@@ -67,6 +68,7 @@ app.post('/login', userIn);
 app.post('/add', addPlayer);
 app.post('/edit/:id', editPlayer);
 app.post('/edituser/:userid', editUser);
+app.post('/editguest/:guestid', editGuest);
 
 
 // set the app to listen on the port
