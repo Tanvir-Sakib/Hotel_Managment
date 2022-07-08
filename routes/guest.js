@@ -104,4 +104,17 @@ module.exports = {
 
     },
 
+    deleteGuest:(req, res) => {
+        let guestId = req.params.guestid;
+        let query = `DELETE FROM guests WHERE id =${guestId}`;
+
+        db.query(query, (err, result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            console.log(result);
+            res.redirect('/guestdata');
+        });
+    }
+
 };

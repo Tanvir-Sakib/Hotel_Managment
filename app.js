@@ -7,7 +7,7 @@ const {getHomePage} = require('./routes/index');
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const {registrationPage, adduser,userdata, editUserPage, editUser} = require('./routes/auth');
 const {loginPage,userProfile,userIn,userOut,userPro,open} = require('./routes/verify');
-const {addguestpage, addguest, guestdata, editGuestPage, editGuest } = require('./routes/guest');
+const {addguestpage, addguest, guestdata, editGuestPage, editGuest, deleteGuest } = require('./routes/guest');
 const session = require('express-session');
 
 
@@ -55,6 +55,7 @@ app.get('/addguest', addguestpage);
 app.get('/login', loginPage );
 app.get('/edituser/:userid', editUserPage);
 app.get('/editguest/:guestid', editGuestPage);
+app.get('/deleteguest/:guestid', deleteGuest);
 app.get('/add', addPlayerPage);
 app.get('/edit/:id', editPlayerPage);
 app.get('/delete/:id', deletePlayer);
