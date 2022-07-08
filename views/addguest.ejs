@@ -1,0 +1,51 @@
+<% include partials/mainheader.ejs %>
+<div class="container">
+    <h2>Guest Data Entry Form</h2>
+    <form action="/addguest" method="post">
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="address" class="form-control" id="address" placeholder="Enter address" name="address">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="tel">Phone Number:</label>
+            <input type="tel" class="form-control" id="tel" placeholder="Enter phone number" name="phone_number">
+        </div>
+
+        <div class="form-group">
+            <label for="tel">NID/Passport Number:</label>
+            <input type="tel" class="form-control" id="tel" placeholder="Enter NID/Passport number" name="nid">
+        </div>
+
+        <div class="form-group">
+            <label for="tel">Room Number:</label>
+            <input type="tel" class="form-control" id="tel" placeholder="Enter room number" name="room_num">
+        </div>
+        <div class="form-group">
+            <label for="dob">Check In:</label>
+            <input type="date" class="form-control" id="dob" placeholder="Check In time" name="check_in">
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Check out:</label>
+            <input type="date" class="form-control" id="dob" placeholder="Check out time" name="check_out">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+
+    </form>
+</div>
+</div>
+</body>
+</html>

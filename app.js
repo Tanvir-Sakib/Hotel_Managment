@@ -5,8 +5,9 @@ const mysql = require('mysql');
 const path = require('path');
 const {getHomePage} = require('./routes/index');
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
-const { registrationPage, adduser,userdata, editUserPage, editUser} = require('./routes/auth');
+const {registrationPage, adduser,userdata, editUserPage, editUser} = require('./routes/auth');
 const {loginPage,userProfile,userIn,userOut,userPro,open} = require('./routes/verify');
+const {addguestpage, addguest, guestdata, editGuestPage } = require('./routes/guest');
 const session = require('express-session');
 
 
@@ -50,16 +51,18 @@ app.use(fileUpload()); // configure fileupload
 
 app.get('/', getHomePage);
 app.get('/registration', registrationPage );
+app.get('/addguest', addguestpage);
 app.get('/login', loginPage );
 app.get('/edituser/:userid', editUserPage);
 app.get('/add', addPlayerPage);
 app.get('/edit/:id', editPlayerPage);
 app.get('/delete/:id', deletePlayer);
 app.get('/userdata', userdata);
+app.get('/guestdata', guestdata);
 app.get('/userprofile', userProfile);
 app.get('/userpro', userPro);
 app.get('/open', open);
-app.post('/registration', adduser );
+app.post('/addguest', addguest);
 app.post('/login', userIn);
 app.post('/add', addPlayer);
 app.post('/edit/:id', editPlayer);
