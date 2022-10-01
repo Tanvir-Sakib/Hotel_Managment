@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const path = require('path');
 const {getHomePage} = require('./routes/index');
 const {registrationPage, adduser,userdata, editUserPage, editUser, deleteUser} = require('./routes/auth');
-const {loginPage,userIn} = require('./routes/verify');
+const {loginPage,userIn, logOut} = require('./routes/verify');
 const {addguestpage, addguest, guestdata, editGuestPage, editGuest, deleteGuest } = require('./routes/guest');
 const session = require('express-session');
 
@@ -52,6 +52,7 @@ app.get('/', getHomePage);
 app.get('/registration', registrationPage );
 app.get('/addguest', addguestpage);
 app.get('/login', loginPage );
+app.get('/logout', logOut );
 app.get('/edituser/:userid', editUserPage);
 app.get('/editguest/:guestid', editGuestPage);
 app.get('/deleteuser/:userid', deleteUser);
