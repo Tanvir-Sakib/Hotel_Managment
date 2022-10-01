@@ -7,6 +7,7 @@ const {getHomePage} = require('./routes/index');
 const {registrationPage, adduser,userdata, editUserPage, editUser, deleteUser} = require('./routes/auth');
 const {loginPage,userIn, logOut} = require('./routes/verify');
 const {addguestpage, addguest, guestdata, editGuestPage, editGuest, deleteGuest } = require('./routes/guest');
+const { chatIndex } = require('./routes/LiveChat');
 const session = require('express-session');
 
 
@@ -64,6 +65,7 @@ app.post('/addguest', addguest);
 app.post('/login', userIn);
 app.post('/edituser/:userid', editUser);
 app.post('/editguest/:guestid', editGuest);
+app.get('/livechat', chatIndex);
 
 
 // set the app to listen on the port
