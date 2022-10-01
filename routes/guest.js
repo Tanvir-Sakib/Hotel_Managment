@@ -1,6 +1,12 @@
 module.exports = {
 
     addguestpage: (req, res) => {
+        const sessionData = req.session
+        if (!sessionData.user) {
+            res.redirect('/login');
+            return;
+        }
+
         res.render('addguest.ejs', {
             title: 'Add Guest Page',
             message: ''
@@ -8,14 +14,11 @@ module.exports = {
     },
 
     addguest: (req, res) => {
-        console.log(req.body);
-
         const sessionData = req.session
-
         if (!sessionData.user) {
             res.redirect('/login');
+            return;
         }
-
 
         let name = req.body.name;
         let address = req.body.address;

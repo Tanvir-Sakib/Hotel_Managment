@@ -1,14 +1,16 @@
 module.exports = {
     
     registrationPage: (req, res) => {
-
-
+        const sessionData = req.session
+        if (!sessionData.user) {
+            res.redirect('/login');
+            return;
+        }
 
         res.render('registration.ejs', {
             title: 'Registration Page'
             ,message: ''
         });
-
     },
 
     adduser: (req, res) => {
