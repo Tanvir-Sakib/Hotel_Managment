@@ -3,6 +3,8 @@ module.exports = {
 
         res.render('index.ejs', {
             title: 'Welcome to ABC Hotel Int.',
+
+
         });
     },
 };

@@ -1,10 +1,14 @@
 module.exports = {
     
     registrationPage: (req, res) => {
+
+
+
         res.render('registration.ejs', {
             title: 'Registration Page'
             ,message: ''
         });
+
     },
 
     adduser: (req, res) => {
@@ -21,6 +25,13 @@ module.exports = {
 
         let query = "INSERT INTO `users` (name, username, address, dob, phonenumber, gender, email, password ) VALUES ('" +
         name + "', '" + username + "', '" + address + "', '" + dob + "', '" + phonenumber + "', '" + gender + "' , '" + email + "' , '" + password + "')";
+
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
+
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -32,6 +43,11 @@ module.exports = {
     userdata: (req, res) => {
         let query = "SELECT * FROM `users` "; // query database to get all the user
 
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
         // execute query
         db.query(query, (err, result) => {
             if (err) {
@@ -49,6 +65,13 @@ module.exports = {
         let userid = req.params.userid;
 
         let query = "SELECT * FROM `users` WHERE id = '" + userid + "' ";
+
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
+
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -88,6 +111,11 @@ module.exports = {
                     password = '${password}' 
                     WHERE id = ${userid} `;
 
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
 
         db.query(query, (err, result) => {
             if (err) {
@@ -98,5 +126,21 @@ module.exports = {
         });
         
     },
+
+    deleteUser:(req, res) => {
+        let userid = req.params.userid;
+        console.log("delete user" + userid);
+        let query = `DELETE FROM users WHERE id =${userid}`;
+
+
+
+        db.query(query, (err, result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            console.log(result.body);
+           res.redirect('/userdata');
+        });
+    }
     
 };

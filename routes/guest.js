@@ -10,6 +10,13 @@ module.exports = {
     addguest: (req, res) => {
         console.log(req.body);
 
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
+
+
         let name = req.body.name;
         let address = req.body.address;
         let email = req.body.email;
@@ -24,6 +31,7 @@ module.exports = {
             ${name}', ' ${address}', ' ${email}', ' ${phone_number}', ' ${nid}', ' ${room_num}', ' ${check_in}', ' ${check_out}')
         `;
         console.log(query);
+
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -34,6 +42,12 @@ module.exports = {
 
     guestdata: (req, res) => {
         let query = "SELECT * FROM `guests` "; // query database to get all the user
+
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
 
         // execute query
         db.query(query, (err, result) => {
@@ -52,6 +66,13 @@ module.exports = {
         let guestId = req.params.guestid;
 
         let query = `SELECT * FROM guests WHERE id =${guestId}`;
+
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
+
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -93,6 +114,11 @@ module.exports = {
                                        check_out = '${check_out}'
                       WHERE id = ${guestId} `;
         console.log(query);
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
 
         db.query(query, (err, result) => {
             if (err) {

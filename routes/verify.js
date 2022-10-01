@@ -21,7 +21,7 @@ module.exports = {
 
             if (result.length > 0) {
                 req.session.user = result[0];
-                res.redirect('/userprofile');
+                res.redirect('/');
             }
             else {
                 res.render('login.ejs', {
@@ -32,7 +32,7 @@ module.exports = {
         });
     },
     userProfile: (req, res) => {
-         let query = `SELECT * FROM userin`;
+         let query = `SELECT * FROM users`;
 
          const sessionData = req.session
 
@@ -51,44 +51,6 @@ module.exports = {
                 userProfile: result,
             });
         });
-    },
-
-    userOut: (req, res) => {
-        console.log(req.body);
-
-        let email = req.body.email;
-        let password = req.body.pwd;
-        let query = `INSERT INTO userin SET 
-                    email = '${email}' ,
-                    password = '${password}'`;
-       
-        db.query(query, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            res.redirect('/userpro');
-        });
-    },
-
-    userPro: (req, res) => {
-        let query = `SELECT * FROM userin`;
-
-            db.query(query, (err, result) => {
-                if (err) {
-                    res.redirect('/');
-                }
-                res.render('userpro.ejs', {
-                    title: 'User Pro',
-                    userPro: result,
-                });
-            });
-    },
-
-    open: (req, res) => {
-
-            res.render('open.ejs', {
-                title: 'Open Page',
-            });
     },
 
 }
