@@ -9,10 +9,14 @@ const {loginPage,userIn, logOut} = require('./routes/verify');
 const {addguestpage, addguest, guestdata, editGuestPage, editGuest, deleteGuest } = require('./routes/guest');
 const { chatIndex } = require('./routes/LiveChat');
 const session = require('express-session');
+const http = require('http');
+const { Server } = require("socket.io");
 
 
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 const port = 5000;
 app.use(session({
     secret: '2C44-4D44-WppQ38S',
@@ -69,6 +73,20 @@ app.get('/livechat', chatIndex);
 
 
 // set the app to listen on the port
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server running on port: ${port}`);
+});
+
+// SOCKET.IO CHAT EVENT HANDLING
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+
+    socket.on('chat_message', (msg) => {
+        console.log('message: ' + msg);
+        io.emit('chat_message', msg);
+    });
+
 });

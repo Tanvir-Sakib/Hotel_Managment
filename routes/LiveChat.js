@@ -1,8 +1,13 @@
 module.exports = {
     chatIndex: (req, res) => {
-        res.render('login.ejs', {
-            title: 'Login Page'
-            , message: ''
+        const sessionData = req.session
+        if (!sessionData.user) {
+            res.redirect('/login');
+            return;
+        }
+        res.render('liveChat.ejs', {
+            title: 'Live Chat Page',
+            message: '',
         });
     }
 }
