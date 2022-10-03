@@ -1,3 +1,4 @@
+const { formatDate } = require('../utils/DateFormatUtil')
 module.exports = {
 
     addguestpage: (req, res) => {
@@ -56,6 +57,15 @@ module.exports = {
         db.query(query, (err, result) => {
             if (err) {
                 res.redirect('/');
+            }
+            for (let i = 0; i < result.length; i++) {
+                const guestdata = result[i];
+                if (guestdata.check_in) {
+                    guestdata.check_in = formatDate(guestdata.check_in);
+                }
+                if (guestdata.check_out) {
+                    guestdata.check_out = formatDate(guestdata.check_out);
+                }
             }
             res.render('guestlist.ejs', {
                 title: 'Guest data',
