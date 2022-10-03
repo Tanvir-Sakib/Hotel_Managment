@@ -76,25 +76,24 @@ module.exports = {
     },
 
     editGuestPage: (req, res) => {
-        let guestId = req.params.guestid;
-
-        let query = `SELECT * FROM guests WHERE id =${guestId}`;
-
         const sessionData = req.session
 
         if (!sessionData.user) {
             res.redirect('/login');
         }
 
+        let guestId = req.params.guestid;
+
+        let query = `SELECT * FROM guests WHERE id =${guestId}`;
+
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
             }
-            console.log(result);
+
             const guestData = result[0];
-            guestData.check_in = guestData.check_in.toISOString().split('T')[0]
-            guestData.check_out = guestData.check_out ? guestData.check_out.toISOString().split('T')[0] : null
-            console.log(guestData);
+            guestData.check_in = guestData.check_in ? formatDate(guestData.check_in) : null
+            guestData.check_out = guestData.check_out ? formatDate(guestData.check_out) : null
             res.render('editguest.ejs', {
                 title: 'Edit Guest Data',
                 guest: guestData,
