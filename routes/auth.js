@@ -1,15 +1,4 @@
-const padTo2Digits = (num) => {
-    return num.toString().padStart(2, '0');
-}
-
-const formatDate = (date) => {
-    return [
-        padTo2Digits(date.getDate()),
-        padTo2Digits(date.getMonth() + 1),
-        date.getFullYear(),
-    ].join('/');
-}
-
+const { formatDate } = require('../utils/DateFormatUtil')
 module.exports = {
     
     registrationPage: (req, res) => {
@@ -33,12 +22,11 @@ module.exports = {
         let address = req.body.address;
         let phonenumber = req.body.tel;
         let dob = req.body.dob;
-        let gender = req.body.gender;
         let email = req.body.email;
         let password = req.body.pwd;
 
         let query = "INSERT INTO `users` (name, username, address, dob, phonenumber, gender, email, password ) VALUES ('" +
-        name + "', '" + username + "', '" + address + "', '" + dob + "', '" + phonenumber + "', '" + gender + "' , '" + email + "' , '" + password + "')";
+        name + "', '" + username + "', '" + address + "', '" + dob + "', '" + phonenumber + "', '"  + email + "' , '" + password + "')";
 
         const sessionData = req.session
 
