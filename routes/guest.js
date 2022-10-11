@@ -103,6 +103,12 @@ module.exports = {
     },
 
     editGuest: (req, res) => {
+        const sessionData = req.session
+
+        if (!sessionData.user) {
+            res.redirect('/login');
+        }
+
         console.log(req.body);
         let guestId = req.body.guest_id;
 
@@ -125,16 +131,10 @@ module.exports = {
                                        check_in = '${check_in}',
                                        check_out = '${check_out}'
                       WHERE id = ${guestId} `;
-        console.log(query);
-        const sessionData = req.session
-
-        if (!sessionData.user) {
-            res.redirect('/login');
-        }
 
         db.query(query, (err, result) => {
             if (err) {
-                return res.status(500).send(err);
+                return res.status(500).send({...err, key: "error"});
             }
             console.log(result);
             res.redirect('/guestdata');

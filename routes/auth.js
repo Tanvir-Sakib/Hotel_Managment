@@ -25,7 +25,7 @@ module.exports = {
         let email = req.body.email;
         let password = req.body.pwd;
 
-        let query = "INSERT INTO `users` (name, username, address, dob, phonenumber, gender, email, password ) VALUES ('" +
+        let query = "INSERT INTO `users` (name, username, address, dob, phonenumber, email, password ) VALUES ('" +
         name + "', '" + username + "', '" + address + "', '" + dob + "', '" + phonenumber + "', '"  + email + "' , '" + password + "')";
 
         const sessionData = req.session
@@ -117,20 +117,20 @@ module.exports = {
                     address = '${address}', 
                     phonenumber = '${phonenumber}', 
                     dob = '${dob}', 
-                    gender = '${gender}' ,
                     email = '${email}' ,
                     password = '${password}' 
                     WHERE id = ${userid} `;
 
         const sessionData = req.session
 
+        console.log(query);
         if (!sessionData.user) {
             res.redirect('/login');
         }
 
         db.query(query, (err, result) => {
             if (err) {
-                return res.status(500).send(err);
+                return res.status(500).send({...err, key: "error"});
             }
             console.log(result);
             res.redirect('/userdata');
